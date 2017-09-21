@@ -29,7 +29,7 @@ public class Main {
         g.checkExpressions();
         Proof gr = proofGenerator.proof;
         gr.checkExpressions();
-        ansGenerator.generate("input", gr, true);
+        ansGenerator.generate("input", gr, false);
     }
 
     static Proof getGrammar(String axioms, String input) {
