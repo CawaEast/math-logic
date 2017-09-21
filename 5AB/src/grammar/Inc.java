@@ -9,10 +9,10 @@ public class Inc extends UnaryOperator {
         name = "'";
     }
 
-    public String toString() {
+    public String toString() {/*
         if (getNum() > 0) {
             return Integer.toString(getNum());
-        }
+        }*/
         if (first.isVar() || first.isFunc || first.name.equals("'")) {
             return first.toString() + "'";
         } else {

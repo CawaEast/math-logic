@@ -734,8 +734,10 @@ public class ProofGenerator {
                 }
                 if (ans.size() > 0) {
                     vector.addAll(ans);
+                    ans = new Vector<>();
                     vector = filter(vector);
                     cont = true;
+
                 }
             }/*
             if (ans.size() > 0) {

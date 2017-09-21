@@ -1,11 +1,11 @@
-proof CLP;
+grammar CLP;
 @header {
-    import proof.*;
+    import grammar.*;
     import java.util.Vector;
 }
 
 @members {
-    public Grammar proof = new Grammar();
+    public Proof proof = new Proof();
     public Vector<Expression> axioms = new Vector<Expression>();
     static void wr(String x) {System.out.print(x);}
     static void tabs(int amount) {for(int i=0; i<amount; i++) System.out.print(' ');}
@@ -17,7 +17,7 @@ start
 
 axioms
     : (e = expression{axioms.add(new Expression($e.rgt));} '\n')+
-    ;
+         ;
 
 
 file
@@ -33,11 +33,13 @@ expression returns [GrammarToken rgt]
     ;
 
 disjunction returns [GrammarToken rgt]
-    :   a = conjunction{$rgt = $a.rgt;} ('|' b = disjunction{$rgt = new Disjunction($a.rgt, $b.rgt);})?
+    :   a = conjunction{$rgt = $a.rgt;}
+    |   aa = disjunction '|' b = conjunction{$rgt = new Disjunction($aa.rgt, $b.rgt);}
     ;
 
 conjunction  returns [GrammarToken rgt]
-    :   a = negate{$rgt = $a.rgt;} ('&' b = conjunction{$rgt = new Conjunction($a.rgt, $b.rgt);})?
+    :   a = negate{$rgt = $a.rgt;}
+    |   aa = conjunction '&' b = negate{$rgt = new Conjunction($aa.rgt, $b.rgt);}
     ;
 
 negate returns [GrammarToken rgt]
