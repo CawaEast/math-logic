@@ -49,6 +49,7 @@ public class Grammar {
             checkExpression(e, i);
             if (e.key == -1) {
                 badString = i;
+                return;
             }
         }
     }
